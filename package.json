@@ -1,0 +1,26 @@
+{
+  "name": "biblelistcalc",
+  "private": true,
+  "description": "A calculator for Bible reading lists such as the Professor Grant Horner Bible Reading System.",
+  "author": "Joshua Poehls <joshua@poehls.me>",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpoehls/biblelistcalc"
+  },
+  "scripts": {
+    "start": "brunch watch --server",
+    "build": "brunch build --production"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "auto-reload-brunch": "^2.0.0",
+    "brunch": "^2.4.2",
+    "brunch-typescript": "^1.8.0",
+    "clean-css-brunch": "^2.0.0",
+    "css-brunch": "^2.0.0",
+    "javascript-brunch": "^2.0.0",
+    "less-brunch": "^2.0.0",
+    "uglify-js-brunch": "^2.0.0"
+  }
+}

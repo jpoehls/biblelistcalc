@@ -1,0 +1,17 @@
+{
+    "version": "0.1.0",
+    "command": "${workspaceRoot}/node_modules/.bin/brunch",
+    "isShellCommand": true,
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [],
+            "isBuildCommand": true
+        },
+        {
+            "taskName": "watch",
+            "args": ["--server"],
+            "isWatching": true
+        }
+    ]
+}
