@@ -12,7 +12,10 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "react": "^0.14.7"
+  },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",
     "brunch": "^2.4.2",
@@ -21,6 +24,7 @@
     "css-brunch": "^2.0.0",
     "javascript-brunch": "^2.0.0",
     "less-brunch": "^2.0.0",
+    "typescript": "^1.8.7",
     "uglify-js-brunch": "^2.0.0"
   }
 }
