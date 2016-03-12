@@ -14,12 +14,13 @@
   },
   "dependencies": {
     "lodash": "^4.6.1",
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",
     "brunch": "^2.4.2",
-    "brunch-typescript": "^1.8.0",
+    "brunch-typescript": "git://github.com/jpoehls/brunch-typescript.git#master",
     "clean-css-brunch": "^2.0.0",
     "css-brunch": "^2.0.0",
     "javascript-brunch": "^2.0.0",
