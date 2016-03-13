@@ -180,7 +180,7 @@ namespace app {
                         </div>
                         <ul className="books">
                             { preBooks.map(bookId => <li key={bookId}>{bookId}</li>) }
-                            <li key={nextBook.id}>{nextBook.name}</li>
+                            <li key={nextBook.id} className="next">{nextBook.name}&nbsp;{this.props.list.next.chapter}</li>
                             { postBooks.map(bookId => <li key={bookId}>{bookId}</li>) }
                         </ul>
                         <div className="right">
