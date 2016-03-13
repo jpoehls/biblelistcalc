@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 
 namespace app {
 
@@ -9,6 +10,9 @@ namespace app {
             this.chapters = chapters;
         }
 
+        /**
+         * Get the OSIS ID of the book.
+         */
         id: string; // osisId
         name: string;
         chapters: number;
@@ -86,9 +90,7 @@ namespace app {
     }
 
     function getBookById(id: string) {
-        var b = new Book();
-        b.chapters = 1;
-        return b;
+        return _.find(getBooks(), x => x.id === id);
     }
 
     class NextChapter {
@@ -107,7 +109,7 @@ namespace app {
             this.bookIds = bookIds;
             this.totalChapters = 0;
             bookIds.map(id => {
-               this.totalChapters += getBookById(id).chapters;
+                this.totalChapters += getBookById(id).chapters;
             });
             this.next = new NextChapter(bookIds[0], 1);
         }
@@ -142,9 +144,9 @@ namespace app {
                 <div>
                     <h1>My Reading Lists</h1>
                     <div className="list-container">
-                    { lists.map(list => {
-                        return <ListComponent list={list} key={list.name} />;
-                    }) }
+                        { lists.map(list => {
+                            return <ListComponent list={list} key={list.name} />;
+                        }) }
                     </div>
                 </div>
             );
@@ -154,17 +156,42 @@ namespace app {
     class ListComponent extends React.Component<{ list: List }, {}> {
         render() {
 
-            
-            
-            var preBooks = [];
-            var postBooks = [];
-            var nextBook = getBookById(this.props.list.next.bookId).name;
-            
+            var allBooks = getBooks();
+            var allBookIds = _.map(allBooks, x => { return x.id; });
+
+            var preBooks = _.filter(this.props.list.bookIds, x => {
+                return _.indexOf(allBookIds, x) < _.indexOf(allBookIds, this.props.list.next.bookId);
+            });
+
+            var postBooks = _.filter(this.props.list.bookIds, x => {
+                return _.indexOf(allBookIds, x) > _.indexOf(allBookIds, this.props.list.next.bookId);
+            });
+
+            var nextBook = _.find(allBooks, x => x.id === this.props.list.next.bookId);
+
+            // TODO: calculate the end date based on the number of remaining chapters
+
             return (
                 <div className="list">
-                    <h1>{this.props.list.name}</h1>
-                    <span className="days">({this.props.list.totalChapters} days)</span>
-                    <p className="books">{this.props.list.bookIds}</p>
+                    <div className="inner">
+                        <div className="left">
+                            <h1>{this.props.list.name}</h1>
+                            <span className="days">({this.props.list.totalChapters} days) </span>
+                        </div>
+                        <ul className="books">
+                            { preBooks.map(bookId => <li key={bookId}>{bookId}</li>) }
+                            <li key={nextBook.id}>{nextBook.name}</li>
+                            { postBooks.map(bookId => <li key={bookId}>{bookId}</li>) }
+                        </ul>
+                        <div className="right">
+                            <a className="decrement" />
+                            <a className="increment" />
+                        </div>
+                    </div>
+                    <div className="eta">
+                        <span className="date">Jun 12, 2016</span>
+                        <span className="days">(146 days)</span>
+                    </div>
                 </div>
             );
         }
