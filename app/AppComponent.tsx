@@ -176,7 +176,7 @@ namespace app {
                     <div className="inner">
                         <div className="left">
                             <h1>{this.props.list.name}</h1>
-                            <span className="days">({this.props.list.totalChapters} days) </span>
+                            <p className="days">({this.props.list.totalChapters} days)</p>
                         </div>
                         <ul className="books">
                             { preBooks.map(bookId => <li key={bookId}>{bookId}</li>) }
